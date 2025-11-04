@@ -30,18 +30,22 @@
     }
 
     // displayTeam() : affiche le nom d'équipe et la liste des membres dans le HTML
-    function displayTeam(team, name) {
-      // TODO : mettre à jour les éléments #teamName et #teamList
+    function displayTeam(team) {
+      const name = teamNames[Math.floor(Math.random() * teamNames.length)];
+      document.getElementById('teamName').textContent = team.length ? name : 'Aucune équipe';
+      document.getElementById('teamList').innerHTML = team.map(n => `<li>${n}</li>`).join('');
     }
 
     // --- Fonction principale ---
     function main() {
       const inputValue = document.getElementById('names').value;
-      // TODO : fait appel aux 3 fonctions ci-dessus pour afficher l'équipe
-	  parseNames("Alice, Bob,  ,Charlie  , ");
-	  // Retourne: ["Alice", "Bob", "Charlie"]
-	  getRandomTeam(["Alice", "Bob", "Charlie", "David", "Eve"], 3);
-	  // Retourne aléatoirement 3 prénoms, par exemple: ["Charlie", "Alice", "Eve"]
+      const names = parseNames(inputValue);
+      if (names.length === 0) {
+        displayTeam([]);
+        return;
+      }
+      const team = getRandomTeam(names, 3);
+      displayTeam(team);
     }
 
     document.getElementById('generateBtn').addEventListener('click', main);
