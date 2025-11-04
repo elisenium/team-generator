@@ -25,7 +25,8 @@
 
     // getRandomTeam() : sélectionne aléatoirement 3 prénoms maximum
     function getRandomTeam(names, size) {
-      // TODO : mélanger le tableau et retourner les "size" premiers éléments
+      const shuffled = [...names].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, size);
     }
 
     // displayTeam() : affiche le nom d'équipe et la liste des membres dans le HTML
@@ -39,6 +40,8 @@
       // TODO : fait appel aux 3 fonctions ci-dessus pour afficher l'équipe
 	  parseNames("Alice, Bob,  ,Charlie  , ");
 	  // Retourne: ["Alice", "Bob", "Charlie"]
+	  getRandomTeam(["Alice", "Bob", "Charlie", "David", "Eve"], 3);
+// Retourne aléatoirement 3 prénoms, par exemple: ["Charlie", "Alice", "Eve"]
     }
 
     document.getElementById('generateBtn').addEventListener('click', main);
