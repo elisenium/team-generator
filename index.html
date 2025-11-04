@@ -31,6 +31,8 @@
     // displayTeam() : affiche le nom d'équipe et la liste des membres dans le HTML
     function displayTeam(team, name) {
       // TODO : mettre à jour les éléments #teamName et #teamList
+      document.getElementById('teamName').textContent = name || '';
+      document.getElementById('teamList').innerHTML = team.map(n => `<li>${n}</li>`).join('');
     }
 
     // --- Fonction principale ---
